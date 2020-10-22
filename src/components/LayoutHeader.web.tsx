@@ -1,14 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const LayoutHeader: FC<{}> = (): JSX.Element => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome to React Native Web + Monorepo</Text>
-    </View>
-  );
-};
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
@@ -22,5 +14,13 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   }
 });
+
+const LayoutHeader: FC<{}> = (): JSX.Element => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.text}>Welcome to React Native Web + Monorepo</Text>
+    </View>
+  );
+};
 
 export default LayoutHeader;
