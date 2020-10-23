@@ -8,6 +8,20 @@ const ScrollView = styled.ScrollView`
   background-color: white;
 `;
 
+const TextFooter = styled.Text`
+  color: gray;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px;
+  padding-right: 12px;
+  text-align: left;
+`;
+
+const ViewEngine = styled.View`
+  position: absolute;
+  right: 0;
+`;
+
 const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
@@ -50,9 +64,9 @@ const Layout: FC<{}> = (): JSX.Element => (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <LayoutHeader />
-        <View style={styles.engine}>
-          <Text style={styles.footer}>Engine: Hermes</Text>
-        </View>
+        <ViewEngine>
+          <TextFooter>Engine: Hermes</TextFooter>
+        </ViewEngine>
         <View style={styles.body}>
           <View style={styles.sectionContainer}>
             <Text style={styles.sectionTitle}>Code sharing using...</Text>

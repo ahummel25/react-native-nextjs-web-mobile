@@ -6,7 +6,7 @@ declare module '@emotion/native' {
     CreateStyled,
     CreateStyledComponentExtrinsic
   } from '@emotion/styled-base';
-  import ReactNative from 'react-native'; // eslint-disable-line
+  import ReactNative from 'react-native';
 
   type StyledReactNativeComponents =
     | 'ActivityIndicator'
