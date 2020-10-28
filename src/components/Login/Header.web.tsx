@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const LayoutHeader: FC<{}> = (): JSX.Element => {
+const LayoutHeader: FC<Record<string, unknown>> = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Welcome to React Native Web + Monorepo</Text>
+      <Text style={styles.text}>Welcome to React Native Web + Mobile!</Text>
     </View>
   );
 };

@@ -5,10 +5,6 @@ const Global = styled.View`
   body {
     height: 100%;
   }
-
-  body {
-    color: rgb(51, 51, 51);
-  }
 `;
 
 export default Global;

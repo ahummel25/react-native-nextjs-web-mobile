@@ -70,7 +70,10 @@ declare module '@emotion/native' {
     >;
   };
 
-  export interface Styled<Theme extends object = any, ExtraProps = {}>
+  export interface Styled<
+    Theme extends Record<string, unknown> = any,
+    ExtraProps = Record<string, unknown>
+  >
     extends CreateStyled<Theme>,
       StyledComponentsForReactNative<
         StyledReactNativeComponents,
@@ -83,3 +86,5 @@ declare module '@emotion/native' {
   const styled: Styled;
   export default styled;
 }
+
+declare module '*.png';
