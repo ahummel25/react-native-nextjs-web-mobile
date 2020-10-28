@@ -8,8 +8,8 @@ import {
 import { Button } from 'react-native-elements';
 import styled from 'styled-components/native';
 
-import { LoginContainerProps } from '../../interfaces';
-import { colors } from '../../styles/colors';
+import { LoginContainerProps } from '../interfaces';
+import { colors } from '../styles/colors';
 
 const LoginScreenContainer = styled.View<LoginContainerProps>`
   flex: 1;

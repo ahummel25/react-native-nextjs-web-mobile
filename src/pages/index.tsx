@@ -1,13 +1,18 @@
 // @generated: @expo/next-adapter@2.1.41
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
-import GlobalStyle from '../styles/global';
-import Layout from '../components/Login/Login';
+const Index: FC<Record<string, unknown>> = (): JSX.Element => {
+  const router = useRouter();
 
-const Index: FC<Record<string, unknown>> = (): JSX.Element => (
-  <GlobalStyle>
-    <Layout />
-  </GlobalStyle>
-);
+  useEffect(() => {
+    const { pathname } = router;
+
+    if (pathname == '/') {
+      router.push('/login');
+    }
+  });
+  return <></>;
+};
 
 export default Index;
