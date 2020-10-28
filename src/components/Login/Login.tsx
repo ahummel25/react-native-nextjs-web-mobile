@@ -6,7 +6,7 @@ import {
   TextInput
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import styled from '@emotion/native';
+import styled from 'styled-components/native';
 
 import { LoginContainerProps } from '../../interfaces';
 import { colors } from '../../styles/colors';
@@ -25,6 +25,7 @@ const KeyboardAvoidingViewStyled = styled(({ ...rest }) => (
 
 const LoginFormView = styled.View`
   flex: 1;
+  height: 2000px;
 `;
 
 const LogoText = styled.Text`
@@ -36,13 +37,14 @@ const LogoText = styled.Text`
 `;
 
 const TextInputUsername = styled(({ ...rest }) => <TextInput {...rest} />)`
-  height: 43px;
   font-size: 14px;
   border-radius: 5px;
   border-width: 1px;
   border-color: ${colors.whiteOne};
   background-color: ${colors.whiteTwo};
+  padding-bottom: 10px;
   padding-left: 10px;
+  padding-top: 10px;
   margin-left: 15px;
   margin-right: 15px;
   margin-top: 5px;
@@ -93,7 +95,6 @@ const Login: FC<Record<string, unknown>> = (): JSX.Element => {
             placeholderTextColor={colors.placeholderTextColor}
           />
           <TextInputUsername
-            id="facebook-login-button"
             placeholder="Password"
             placeholderTextColor={colors.placeholderTextColor}
             secureTextEntry={true}

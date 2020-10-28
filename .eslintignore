@@ -1,0 +1,8 @@
+.git
+
+next.config.js
+node_modules
+static
+.gitignore
+.eslintignore
+public/*.min.js

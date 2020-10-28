@@ -26,6 +26,7 @@
 	],
 	"exclude": [
 		"build",
+		"next.config.js",
 		"node_modules/**",
 		"scripts",
 	]

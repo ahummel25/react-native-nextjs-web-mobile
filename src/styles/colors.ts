@@ -1,6 +1,5 @@
-const rgba = (r: number, g: number, b: number, a: number): string => {
-  return `rgba(${r},${g},${b},${a})`;
-};
+const rgba = (r: number, g: number, b: number, a: number): string =>
+  `rgba(${r},${g},${b},${a})`;
 
 export const colors = {
   lightBlue: rgba(56, 151, 241, 1),
