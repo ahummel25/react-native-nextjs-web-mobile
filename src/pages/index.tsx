@@ -1,8 +1,8 @@
 // @generated: @expo/next-adapter@2.1.41
-import React, { FC, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const Index: FC<Record<string, unknown>> = (): JSX.Element => {
+const Index = (): null => {
   const router = useRouter();
 
   useEffect(() => {
@@ -12,7 +12,8 @@ const Index: FC<Record<string, unknown>> = (): JSX.Element => {
       router.push('/login');
     }
   });
-  return <></>;
+
+  return null;
 };
 
 export default Index;

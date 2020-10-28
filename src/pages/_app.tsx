@@ -6,8 +6,8 @@ import '../styles/global.css';
 /**
  * @returns {JSX.Element} The NextJS top-level document.
  */
-function MyApp ({ Component, pageProps }: AppProps): JSX.Element {
-  return <Component {...pageProps} />;
-}
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
+  <Component {...pageProps} />
+);
 
 export default MyApp;
