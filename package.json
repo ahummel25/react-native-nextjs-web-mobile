@@ -16,6 +16,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-navigation/native": "^5.8.6",
     "expo": "~39.0.2",
     "expo-status-bar": "~1.0.2",
     "graceful-fs": "^4.2.4",

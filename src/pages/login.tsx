@@ -8,10 +8,10 @@ import {
 import { Button } from 'react-native-elements';
 import styled from 'styled-components/native';
 
-import { LoginContainerProps } from '../interfaces';
+import { DeviceProps } from '../interfaces';
 import { colors } from '../styles/colors';
 
-const LoginScreenContainer = styled.View<LoginContainerProps>`
+const LoginScreenContainer = styled.View<DeviceProps>`
   flex: 1;
   margin: auto;
   width: ${(props): string => (props.device === 'web' ? '35%' : '75%')};
@@ -28,9 +28,10 @@ const LoginFormView = styled.View`
   height: 2000px;
 `;
 
-const LogoText = styled.Text`
+const LogoText = styled.Text<DeviceProps>`
   font-size: 40px;
-  font-weight: 800;
+  font-weight: ${(props): string =>
+    props.device === 'android' ? 'bold' : '600'};
   margin-top: 150px;
   margin-bottom: 30px;
   text-align: center;
@@ -89,7 +90,7 @@ const Login: FC<Record<string, unknown>> = (): JSX.Element => {
     >
       <LoginScreenContainer device={Platform.OS}>
         <LoginFormView>
-          <LogoText>Instamobile</LogoText>
+          <LogoText device={Platform.OS}>Instamobile</LogoText>
           <TextInputUsername
             placeholder="Username"
             placeholderTextColor={colors.placeholderTextColor}

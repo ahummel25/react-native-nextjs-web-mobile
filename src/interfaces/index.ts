@@ -1,3 +1,3 @@
-export interface LoginContainerProps {
+export interface DeviceProps {
   device: string;
 }
