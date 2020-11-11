@@ -37,7 +37,9 @@ const LogoText = styled.Text<DeviceProps>`
   text-align: center;
 `;
 
-const TextInputUsername = styled(({ ...rest }) => <TextInput {...rest} />)`
+const TextLoginInputField = styled(({ ...rest }) => (
+  <TextInput accessible={true} accessibilityLabel="textinput" {...rest} />
+))`
   font-size: 14px;
   border-radius: 5px;
   border-width: 1px;
@@ -48,7 +50,7 @@ const TextInputUsername = styled(({ ...rest }) => <TextInput {...rest} />)`
   padding-top: 10px;
   margin-left: 15px;
   margin-right: 15px;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 5px;
 `;
 
@@ -91,11 +93,11 @@ const Login: FC<Record<string, unknown>> = (): JSX.Element => {
       <LoginScreenContainer device={Platform.OS}>
         <LoginFormView>
           <LogoText device={Platform.OS}>Instamobile</LogoText>
-          <TextInputUsername
+          <TextLoginInputField
             placeholder="Username"
             placeholderTextColor={colors.placeholderTextColor}
           />
-          <TextInputUsername
+          <TextLoginInputField
             placeholder="Password"
             placeholderTextColor={colors.placeholderTextColor}
             secureTextEntry={true}
