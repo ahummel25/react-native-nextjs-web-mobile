@@ -21,8 +21,8 @@ describe('Login', () => {
     expect(appNameText).not.toBeNull();
   });
   it(`submits the login form with empty username and password fields,
-		renders the appropriate error messages,
-		then populates the fields and verifies the errors are gone`, async () => {
+        renders the appropriate error messages,
+        then populates the fields and verifies the errors are gone`, async () => {
     const { getAllByA11yRole, getByPlaceholderText, queryByText } = render(
       <Login />
     );
