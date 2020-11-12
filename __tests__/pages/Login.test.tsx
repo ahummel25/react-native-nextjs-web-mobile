@@ -19,7 +19,9 @@ describe('Login', () => {
     expect(buttons.length).toBe(2);
     expect(appNameText).not.toBeNull();
   });
-  it('submits the form with or without username and password', async () => {
+  it(`submits the login form with empty username and password fields,
+	    renders the appropriate error messages,
+		then populates the fields and verifies the errors are gone`, async () => {
     const { getAllByA11yRole, getByPlaceholderText, queryByText } = render(
       <Login />
     );
