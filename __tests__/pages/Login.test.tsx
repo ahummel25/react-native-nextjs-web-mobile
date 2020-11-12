@@ -6,6 +6,7 @@ import Login from '../../src/pages/login';
 describe('Login', () => {
   const mockUsername = 'mock-username';
   const mockPassword = 'mock-password';
+
   it('renders correctly', () => {
     const { getByText, getAllByA11yLabel, getAllByA11yRole } = render(
       <Login />
