@@ -1,5 +1,6 @@
 .git
 __mocks__/*
+jest-preset.js
 next.config.js
 node_modules
 static

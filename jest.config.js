@@ -7,7 +7,7 @@ module.exports = {
     }
   },
   moduleFileExtensions: ['js', 'json', 'jsx', 'node', 'ts', 'tsx'],
-  preset: 'react-native',
+  preset: './jest-preset.js',
   testMatch: null,
   transformIgnorePatterns: [
     'node_modules/(?!(jest-)?react-native|react-native-vector-icons|unimodules-permissions-interface|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)'

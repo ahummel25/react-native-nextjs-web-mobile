@@ -1,15 +1,44 @@
-import React, { FC } from 'react';
+import React, { FC, FormEvent } from 'react';
 import {
+  GestureResponderEvent,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
+  Text,
   TextInput
 } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Formik } from 'formik';
 import styled from 'styled-components/native';
+import * as Yup from 'yup';
 
 import { DeviceProps } from '../interfaces';
 import { colors } from '../styles/colors';
+
+const loginSchema = Yup.object().shape({
+  username: Yup.string().required('Username is required'),
+  password: Yup.string().required('Password is required')
+  //   t: Yu
+});
+
+const styles = StyleSheet.create({
+  errorInput: {
+    color: 'red',
+    fontSize: 12,
+    marginLeft: 16
+  },
+  fbLoginButton: {
+    height: 45,
+    marginTop: 10,
+    backgroundColor: 'transparent'
+  },
+  loginButton: {
+    borderRadius: 5,
+    height: 45,
+    marginTop: 10,
+    backgroundColor: colors.lightBlue
+  }
+});
 
 const LoginScreenContainer = styled.View<DeviceProps>`
   flex: 1;
@@ -37,8 +66,11 @@ const LogoText = styled.Text<DeviceProps>`
   text-align: center;
 `;
 
-const TextLoginInputField = styled(({ ...rest }) => (
-  <TextInput accessible={true} accessibilityLabel="textinput" {...rest} />
+const TextLoginInputField = styled(({ touched, error, ...rest }) => (
+  <>
+    <TextInput accessible accessibilityLabel="textinput" touched {...rest} />
+    {touched && error ? <Text style={styles.errorInput}>{error}</Text> : null}
+  </>
 ))`
   font-size: 14px;
   border-radius: 5px;
@@ -71,19 +103,7 @@ const TextLoginInputField = styled(({ ...rest }) => (
 
 // const appId = '1047121222092614';
 
-const styles = StyleSheet.create({
-  fbLoginButton: {
-    height: 45,
-    marginTop: 10,
-    backgroundColor: 'transparent'
-  },
-  loginButton: {
-    borderRadius: 5,
-    height: 45,
-    marginTop: 10,
-    backgroundColor: colors.lightBlue
-  }
-});
+const initialLoginValues = { username: '', password: '' };
 
 const Login: FC<Record<string, unknown>> = (): JSX.Element => {
   return (
@@ -93,16 +113,53 @@ const Login: FC<Record<string, unknown>> = (): JSX.Element => {
       <LoginScreenContainer device={Platform.OS}>
         <LoginFormView>
           <LogoText device={Platform.OS}>Instamobile</LogoText>
-          <TextLoginInputField
-            placeholder="Username"
-            placeholderTextColor={colors.placeholderTextColor}
-          />
-          <TextLoginInputField
-            placeholder="Password"
-            placeholderTextColor={colors.placeholderTextColor}
-            secureTextEntry={true}
-          />
-          <Button buttonStyle={styles.loginButton} title="Login" />
+          <Formik
+            initialValues={initialLoginValues}
+            onSubmit={async (values): Promise<void> => {
+              console.log(values);
+            }}
+            validationSchema={loginSchema}
+          >
+            {({
+              errors,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              touched,
+              values
+            }): JSX.Element => (
+              <>
+                <TextLoginInputField
+                  error={errors.username}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  placeholder="Username"
+                  placeholderTextColor={colors.placeholderTextColor}
+                  touched={touched.username}
+                  value={values.username}
+                />
+                <TextLoginInputField
+                  error={errors.password}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  placeholder="Password"
+                  placeholderTextColor={colors.placeholderTextColor}
+                  secureTextEntry
+                  touched={touched.password}
+                  value={values.password}
+                />
+                <Button
+                  buttonStyle={styles.loginButton}
+                  onPress={(event: GestureResponderEvent): void => {
+                    handleSubmit(
+                      (event as unknown) as FormEvent<HTMLFormElement>
+                    );
+                  }}
+                  title="Login"
+                />
+              </>
+            )}
+          </Formik>
           <Button
             buttonStyle={styles.fbLoginButton}
             titleStyle={{ color: colors.lightBlue }}
