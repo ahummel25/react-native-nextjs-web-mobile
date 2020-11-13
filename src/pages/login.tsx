@@ -13,7 +13,14 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 
-import { DeviceProps, LoginProps, SignUpButtonProps } from '../interfaces';
+import {
+  DeviceProps,
+  ErrorProps,
+  LoginProps,
+  SignUpButtonProps,
+  TextInputProps,
+  TouchedProps
+} from '../interfaces';
 import { colors } from '../styles/colors';
 
 const loginSchema = Yup.object().shape({
@@ -91,12 +98,18 @@ const SignUpText = styled(
   color: ${colors.lightBlue};
 `;
 
-const TextLoginInputField = styled(({ touched, error, ...rest }) => (
-  <>
-    <TextInput accessible accessibilityLabel="textinput" touched {...rest} />
-    {touched && error ? <Text style={styles.errorInput}>{error}</Text> : null}
-  </>
-))`
+const TextLoginInputField = styled(
+  ({
+    touched,
+    error,
+    ...rest
+  }: TextInputProps & TouchedProps & ErrorProps): JSX.Element => (
+    <>
+      <TextInput accessible accessibilityLabel="textinput" {...rest} />
+      {touched && error ? <Text style={styles.errorInput}>{error}</Text> : null}
+    </>
+  )
+)`
   font-size: 14px;
   border-radius: 5px;
   border-width: 1px;
