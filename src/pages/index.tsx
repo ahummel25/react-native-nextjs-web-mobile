@@ -1,7 +1,9 @@
 import React, { FC } from 'react';
 
-import Login from './login';
+import RoutesContainer from '../routes';
 
-const Index: FC<Record<string, unknown>> = (): JSX.Element => <Login />;
+const Index: FC<Record<string, unknown>> = (): JSX.Element => (
+  <RoutesContainer />
+);
 
 export default Index;

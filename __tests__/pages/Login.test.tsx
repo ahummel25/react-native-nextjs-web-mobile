@@ -3,13 +3,30 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
 
 import Login from '../../src/pages/login';
 
+const mockNavigate = jest.fn();
+
+const createTestProps = (
+  props: Record<string, unknown>
+): Record<string, unknown> => ({
+  navigation: {
+    navigate: mockNavigate
+  },
+  ...props
+});
+
 describe('Login', () => {
   const mockUsername = 'mock-username';
   const mockPassword = 'mock-password';
 
+  let props: any;
+
+  beforeEach(() => {
+    props = createTestProps({});
+  });
+
   it('renders correctly', () => {
     const { getByText, getAllByA11yLabel, getAllByA11yRole } = render(
-      <Login />
+      <Login {...props} />
     );
 
     const appNameText = getByText(/instamobile/i);
@@ -24,7 +41,7 @@ describe('Login', () => {
         renders the appropriate error messages,
         then populates the fields and verifies the errors are gone`, async () => {
     const { getAllByA11yRole, getByPlaceholderText, queryByText } = render(
-      <Login />
+      <Login {...props} />
     );
 
     const buttons = getAllByA11yRole('button');
@@ -52,5 +69,16 @@ describe('Login', () => {
       passwordRequiredText = queryByText(/password is required/i);
       expect(passwordRequiredText).toBeNull();
     });
+  });
+  it('should click the sign up navigation and be taken to the sign up page', async () => {
+    const { getByTestId } = render(<Login {...props} />);
+
+    const signUpNav = await getByTestId('sign-up');
+
+    await waitFor(async () => {
+      fireEvent.press(signUpNav);
+    });
+
+    expect(mockNavigate).toHaveBeenCalledWith('SignUp');
   });
 });

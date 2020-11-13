@@ -9,16 +9,16 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
+import { useRouter } from 'next/router';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 
-import { DeviceProps } from '../interfaces';
+import { DeviceProps, LoginProps, SignUpButtonProps } from '../interfaces';
 import { colors } from '../styles/colors';
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
   password: Yup.string().required('Password is required')
-  //   t: Yu
 });
 
 const styles = StyleSheet.create({
@@ -37,6 +37,9 @@ const styles = StyleSheet.create({
     height: 45,
     marginTop: 10,
     backgroundColor: colors.lightBlue
+  },
+  signUp: {
+    textAlign: 'center'
   }
 });
 
@@ -55,6 +58,7 @@ const KeyboardAvoidingViewStyled = styled(({ ...rest }) => (
 const LoginFormView = styled.View`
   flex: 1;
   height: 2000px;
+  text-align: center;
 `;
 
 const LogoText = styled.Text<DeviceProps>`
@@ -64,6 +68,27 @@ const LogoText = styled.Text<DeviceProps>`
   margin-top: 150px;
   margin-bottom: 30px;
   text-align: center;
+`;
+
+const SignUpText = styled(
+  ({ device, navigation, ...rest }: SignUpButtonProps): JSX.Element => {
+    const router = useRouter();
+    return (
+      <>
+        <Text
+          testID="sign-up"
+          onPress={(): void => {
+            device === 'web'
+              ? router.push('/signup')
+              : navigation.navigate('SignUp');
+          }}
+          {...rest}
+        />
+      </>
+    );
+  }
+)`
+  color: ${colors.lightBlue};
 `;
 
 const TextLoginInputField = styled(({ touched, error, ...rest }) => (
@@ -105,70 +130,75 @@ const TextLoginInputField = styled(({ touched, error, ...rest }) => (
 
 const initialLoginValues = { username: '', password: '' };
 
-const Login: FC<Record<string, unknown>> = (): JSX.Element => {
-  return (
-    <KeyboardAvoidingViewStyled
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-    >
-      <LoginScreenContainer device={Platform.OS}>
-        <LoginFormView>
-          <LogoText device={Platform.OS}>Instamobile</LogoText>
-          <Formik
-            initialValues={initialLoginValues}
-            onSubmit={async (values): Promise<void> => {
-              console.log(values);
-            }}
-            validationSchema={loginSchema}
-          >
-            {({
-              errors,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              touched,
-              values
-            }): JSX.Element => (
-              <>
-                <TextLoginInputField
-                  error={errors.username}
-                  onChangeText={handleChange('username')}
-                  onBlur={handleBlur('username')}
-                  placeholder="Username"
-                  placeholderTextColor={colors.placeholderTextColor}
-                  touched={touched.username}
-                  value={values.username}
-                />
-                <TextLoginInputField
-                  error={errors.password}
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                  placeholder="Password"
-                  placeholderTextColor={colors.placeholderTextColor}
-                  secureTextEntry
-                  touched={touched.password}
-                  value={values.password}
-                />
-                <Button
-                  buttonStyle={styles.loginButton}
-                  onPress={(event: GestureResponderEvent): void => {
-                    handleSubmit(
-                      (event as unknown) as FormEvent<HTMLFormElement>
-                    );
-                  }}
-                  title="Login"
-                />
-              </>
-            )}
-          </Formik>
-          <Button
-            buttonStyle={styles.fbLoginButton}
-            titleStyle={{ color: colors.lightBlue }}
-            title="Login with Facebook"
-          />
-        </LoginFormView>
-      </LoginScreenContainer>
-    </KeyboardAvoidingViewStyled>
-  );
-};
+const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
+  <KeyboardAvoidingViewStyled
+    behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+  >
+    <LoginScreenContainer device={Platform.OS}>
+      <LoginFormView>
+        <LogoText device={Platform.OS}>Instamobile</LogoText>
+        <Formik
+          initialValues={initialLoginValues}
+          onSubmit={async (values): Promise<void> => {
+            console.log(values);
+          }}
+          validationSchema={loginSchema}
+        >
+          {({
+            errors,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            touched,
+            values
+          }): JSX.Element => (
+            <>
+              <TextLoginInputField
+                error={errors.username}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+                placeholder="Username"
+                placeholderTextColor={colors.placeholderTextColor}
+                touched={touched.username}
+                value={values.username}
+              />
+              <TextLoginInputField
+                error={errors.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                placeholder="Password"
+                placeholderTextColor={colors.placeholderTextColor}
+                secureTextEntry
+                touched={touched.password}
+                value={values.password}
+              />
+              <Button
+                buttonStyle={styles.loginButton}
+                onPress={(event: GestureResponderEvent): void => {
+                  handleSubmit(
+                    (event as unknown) as FormEvent<HTMLFormElement>
+                  );
+                }}
+                title="Login"
+              />
+            </>
+          )}
+        </Formik>
+        <Button
+          buttonStyle={styles.fbLoginButton}
+          titleStyle={{ color: colors.lightBlue }}
+          title="Login with Facebook"
+        />
+        <Text style={styles.signUp}>
+          Don&apos;t have an account?{' '}
+          <SignUpText device={Platform.OS} navigation={navigation}>
+            Sign up here
+          </SignUpText>
+          .
+        </Text>
+      </LoginFormView>
+    </LoginScreenContainer>
+  </KeyboardAvoidingViewStyled>
+);
 
 export default Login;
