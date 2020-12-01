@@ -14,9 +14,23 @@ const Stack = createStackNavigator<RootStackList>();
 
 const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Login">
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} />
+    <Stack.Navigator
+      initialRouteName="Login"
+      headerMode="screen"
+      screenOptions={({ route }): Record<string, unknown> => ({
+        headerBackTitle: route.name === 'SignUp' ? 'Login' : ''
+      })}
+    >
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerTitle: '' }}
+      />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ headerTitle: '' }}
+      />
     </Stack.Navigator>
   </NavigationContainer>
 );
