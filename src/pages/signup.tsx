@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 
 const SignUp: FC<Record<string, unknown>> = (): JSX.Element => (
   <View>
-    <Text>Sign Up!</Text>
+    <Text></Text>
   </View>
 );
 
