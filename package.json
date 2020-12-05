@@ -17,10 +17,12 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@expo-google-fonts/roboto": "^0.1.0",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
     "expo": "~39.0.2",
+    "expo-font": "^8.3.0",
     "expo-status-bar": "~1.0.2",
     "formik": "^2.2.5",
     "graceful-fs": "^4.2.4",

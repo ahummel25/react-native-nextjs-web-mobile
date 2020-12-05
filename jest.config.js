@@ -10,7 +10,7 @@ module.exports = {
   preset: './jest-preset.js',
   testMatch: null,
   transformIgnorePatterns: [
-    'node_modules/(?!(jest-)?react-native|react-native-vector-icons|unimodules-permissions-interface|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)'
+    'node_modules/(?!(jest-)?react-native|react-native-vector-icons|unimodules-permissions-interface|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|@expo-google-fonts|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)'
   ],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
   testURL: 'http://localhost',

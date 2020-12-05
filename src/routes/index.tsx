@@ -18,13 +18,13 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
     headerTitle: ''
   };
 
-  const signUpOptions = {
+  const commonOptions = {
     headerTitle: ''
   };
 
   if (Platform.OS === 'android') {
     Object.assign(loginOptions, { headerStyle: { height: 80 } });
-    Object.assign(signUpOptions, {
+    Object.assign(commonOptions, {
       headerBackTitleStyle: { bottom: 2 },
       headerStyle: { height: 100 }
     });
@@ -53,7 +53,7 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
         <Stack.Screen
           name="SignUp"
           component={SignUp}
-          options={signUpOptions}
+          options={commonOptions}
         />
       </Stack.Navigator>
     </NavigationContainer>

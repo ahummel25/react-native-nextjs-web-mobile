@@ -33,6 +33,7 @@ export interface SignUpButtonProps {
 }
 
 export interface TextInputProps {
+  fontLoaded?: boolean;
   onChangeText?: (text: string) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   placeholder?: string;
