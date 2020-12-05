@@ -17,6 +17,11 @@ export interface ErrorProps {
   error?: string;
 }
 
+export interface LoadFontProps {
+  fontsToLoad: Record<string, unknown>;
+  setFontLoaded: (fontLoaded: boolean) => void;
+}
+
 export interface LoginProps {
   navigation: ProfileScreenNavigationProp;
 }

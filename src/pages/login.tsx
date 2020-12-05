@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useRef } from 'react';
+import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
 import {
   GestureResponderEvent,
   KeyboardAvoidingView,
@@ -12,7 +12,7 @@ import { Formik } from 'formik';
 import { useRouter } from 'next/router';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
-import { useFonts, Roboto_400Regular } from '@expo-google-fonts/roboto';
+import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 
 import {
   DeviceProps,
@@ -22,6 +22,7 @@ import {
   TextInputProps,
   TouchedProps
 } from '../interfaces';
+import { LoadFont } from '../utils';
 import { colors } from '../styles/colors';
 
 const loginSchema = Yup.object().shape({
@@ -110,7 +111,7 @@ const TextLoginInputField = styled(
 
     useEffect(() => {
       // https://github.com/facebook/react-native/issues/30123
-      if (fontLoaded && Platform.OS === 'android') {
+      if (fontLoaded) {
         passwordInput.current?.setNativeProps({
           style: { fontFamily: 'Roboto_400Regular' }
         });
@@ -166,81 +167,87 @@ const TextLoginInputField = styled(
 const initialLoginValues = { username: '', password: '' };
 
 const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
-  // https://github.com/facebook/react-native/issues/30123
-  const [fontLoaded] = useFonts({
+  const [fontLoaded, setFontLoaded] = useState<boolean>(false);
+  const fontsToLoad = {
     Roboto_400Regular
-  });
+  };
 
   return (
-    <KeyboardAvoidingViewStyled
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-    >
-      <LoginScreenContainer device={Platform.OS}>
-        <LoginFormView>
-          <LogoText device={Platform.OS}>Instamobile</LogoText>
-          <Formik
-            initialValues={initialLoginValues}
-            onSubmit={async (values): Promise<void> => {
-              console.log(values);
-            }}
-            validationSchema={loginSchema}
-          >
-            {({
-              errors,
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              touched,
-              values
-            }): JSX.Element => (
-              <>
-                <TextLoginInputField
-                  error={errors.username}
-                  onChangeText={handleChange('username')}
-                  onBlur={handleBlur('username')}
-                  placeholder="Username"
-                  placeholderTextColor={colors.placeholderTextColor}
-                  touched={touched.username}
-                  value={values.username}
-                />
-                <TextLoginInputField
-                  error={errors.password}
-                  fontLoaded={fontLoaded}
-                  onChangeText={handleChange('password')}
-                  onBlur={handleBlur('password')}
-                  placeholder="Password"
-                  placeholderTextColor={colors.placeholderTextColor}
-                  secureTextEntry
-                  touched={touched.password}
-                  value={values.password}
-                />
-                <Button
-                  buttonStyle={styles.loginButton}
-                  onPress={(event: GestureResponderEvent): void => {
-                    handleSubmit(
-                      (event as unknown) as FormEvent<HTMLFormElement>
-                    );
-                  }}
-                  title="Login"
-                />
-              </>
-            )}
-          </Formik>
-          <Button
-            buttonStyle={styles.fbLoginButton}
-            titleStyle={{ color: colors.lightBlue }}
-            title="Login with Facebook"
-          />
-          <Text style={styles.signUp}>
-            Don&apos;t have an account?{' '}
-            <SignUpText device={Platform.OS} navigation={navigation}>
-              Sign up here
-            </SignUpText>
-            .
-          </Text>
-        </LoginFormView>
-      </LoginScreenContainer>
-    </KeyboardAvoidingViewStyled>
+    <>
+      <KeyboardAvoidingViewStyled
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+      >
+        <LoginScreenContainer device={Platform.OS}>
+          <LoginFormView>
+            <LogoText device={Platform.OS}>Instamobile</LogoText>
+            <Formik
+              initialValues={initialLoginValues}
+              onSubmit={async (values): Promise<void> => {
+                console.log(values);
+              }}
+              validationSchema={loginSchema}
+            >
+              {({
+                errors,
+                handleChange,
+                handleBlur,
+                handleSubmit,
+                touched,
+                values
+              }): JSX.Element => (
+                <>
+                  <TextLoginInputField
+                    error={errors.username}
+                    onChangeText={handleChange('username')}
+                    onBlur={handleBlur('username')}
+                    placeholder="Username"
+                    placeholderTextColor={colors.placeholderTextColor}
+                    touched={touched.username}
+                    value={values.username}
+                  />
+                  <TextLoginInputField
+                    error={errors.password}
+                    fontLoaded={fontLoaded}
+                    onChangeText={handleChange('password')}
+                    onBlur={handleBlur('password')}
+                    placeholder="Password"
+                    placeholderTextColor={colors.placeholderTextColor}
+                    secureTextEntry
+                    touched={touched.password}
+                    value={values.password}
+                  />
+                  <Button
+                    buttonStyle={styles.loginButton}
+                    onPress={(event: GestureResponderEvent): void => {
+                      handleSubmit(
+                        (event as unknown) as FormEvent<HTMLFormElement>
+                      );
+                    }}
+                    title="Login"
+                  />
+                </>
+              )}
+            </Formik>
+            <Button
+              buttonStyle={styles.fbLoginButton}
+              titleStyle={{ color: colors.lightBlue }}
+              title="Login with Facebook"
+            />
+            <Text style={styles.signUp}>
+              Don&apos;t have an account?{' '}
+              <SignUpText device={Platform.OS} navigation={navigation}>
+                Sign up here
+              </SignUpText>
+              .
+            </Text>
+          </LoginFormView>
+        </LoginScreenContainer>
+      </KeyboardAvoidingViewStyled>
+      {/* https://github.com/facebook/react-native/issues/30123 */}
+      {Platform.OS === 'android' && (
+        <LoadFont fontsToLoad={fontsToLoad} setFontLoaded={setFontLoaded} />
+      )}
+    </>
   );
 };
 
