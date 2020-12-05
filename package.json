@@ -44,7 +44,7 @@
     "react-router-native": "^5.2.0",
     "react-scripts": "^3.4.4",
     "styled-components": "^5.2.0",
-    "yup": "^0.29.3"
+    "yup": "^0.32.0"
   },
   "devDependencies": {
     "@expo/next-adapter": "^2.1.41",
