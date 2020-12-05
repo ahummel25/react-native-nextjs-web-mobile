@@ -1,5 +1,10 @@
 import React from 'react';
-import { act, fireEvent, render, waitFor } from '@testing-library/react-native';
+import {
+  fireEvent,
+  render,
+  RenderAPI,
+  waitFor
+} from '@testing-library/react-native';
 
 import Login from '../../src/pages/login';
 
@@ -18,16 +23,19 @@ describe('Login', () => {
   const mockUsername = 'mock-username';
   const mockPassword = 'mock-password';
 
+  let component: RenderAPI;
   let props: any;
 
   beforeEach(() => {
     props = createTestProps({});
   });
 
-  it('renders correctly', () => {
-    const { getByText, getAllByA11yLabel, getAllByA11yRole } = render(
-      <Login {...props} />
-    );
+  it('renders correctly', async () => {
+    await waitFor(async () => {
+      component = render(<Login {...props} />);
+    });
+
+    const { getByText, getAllByA11yLabel, getAllByA11yRole } = component;
 
     const appNameText = getByText(/instamobile/i);
     const inputs = getAllByA11yLabel('textinput');
@@ -40,13 +48,17 @@ describe('Login', () => {
   it(`submits the login form with empty username and password fields,
         renders the appropriate error messages,
         then populates the fields and verifies the errors are gone`, async () => {
-    const { getAllByA11yRole, getByPlaceholderText, queryByText } = render(
-      <Login {...props} />
-    );
+    await waitFor(async () => {
+      component = render(<Login {...props} />);
+    });
+
+    const { getAllByA11yRole, getByPlaceholderText, queryByText } = component;
 
     const buttons = getAllByA11yRole('button');
 
-    await act(async () => {
+    expect(buttons.length).toBe(2);
+
+    await waitFor(async () => {
       fireEvent.press(buttons[0]);
     });
 
@@ -71,7 +83,11 @@ describe('Login', () => {
     });
   });
   it('should click the sign up navigation and be taken to the sign up page', async () => {
-    const { getByTestId } = render(<Login {...props} />);
+    await waitFor(async () => {
+      component = render(<Login {...props} />);
+    });
+
+    const { getByTestId } = component;
 
     const signUpNav = await getByTestId('sign-up');
 

@@ -11,7 +11,7 @@ const Index = (): null => {
     if (pathname == '/') {
       router.push('/login');
     }
-  });
+  }, [router]);
 
   return null;
 };

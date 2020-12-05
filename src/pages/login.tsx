@@ -109,7 +109,8 @@ const TextLoginInputField = styled(
     const passwordInput = useRef<TextInput>(null);
 
     useEffect(() => {
-      if (fontLoaded) {
+      // https://github.com/facebook/react-native/issues/30123
+      if (fontLoaded && Platform.OS === 'android') {
         passwordInput.current?.setNativeProps({
           style: { fontFamily: 'Roboto_400Regular' }
         });
@@ -165,6 +166,7 @@ const TextLoginInputField = styled(
 const initialLoginValues = { username: '', password: '' };
 
 const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
+  // https://github.com/facebook/react-native/issues/30123
   const [fontLoaded] = useFonts({
     Roboto_400Regular
   });
