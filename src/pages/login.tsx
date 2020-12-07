@@ -22,8 +22,8 @@ import {
   TextInputProps,
   TouchedProps
 } from '../interfaces';
-import { LoadFont } from '../utils';
 import { colors } from '../styles/colors';
+import { LoadFont } from '../utils';
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
