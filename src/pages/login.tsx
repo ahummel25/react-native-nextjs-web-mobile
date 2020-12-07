@@ -88,7 +88,7 @@ const SignUpText = styled(
           testID="sign-up"
           onPress={(): void => {
             device === 'web'
-              ? router.push('/signup')
+              ? router.push('/sign-up')
               : navigation.navigate('SignUp');
           }}
           {...rest}

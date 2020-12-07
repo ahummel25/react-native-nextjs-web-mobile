@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Login from '../pages/login';
-import SignUp from '../pages/signup';
+import SignUp from '../pages/sign-up';
 
 export type RootStackList = {
   Login: undefined;
