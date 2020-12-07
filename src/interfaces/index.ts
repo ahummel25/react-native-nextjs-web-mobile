@@ -4,6 +4,7 @@ import {
   NativeSyntheticEvent,
   TextInputFocusEventData
 } from 'react-native';
+import { FontSource } from '@expo-google-fonts/roboto/useFonts';
 
 import { RootStackList } from '../routes';
 
@@ -18,7 +19,9 @@ export interface ErrorProps {
 }
 
 export interface LoadFontProps {
-  fontsToLoad: Record<string, unknown>;
+  fontsToLoad: {
+    [fontFamily: string]: FontSource;
+  };
   setFontLoaded: (fontLoaded: boolean) => void;
 }
 
