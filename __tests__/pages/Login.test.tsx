@@ -68,19 +68,19 @@ describe('Login', () => {
     expect(userNameRequiredText).not.toBeNull();
     expect(passwordRequiredText).not.toBeNull();
 
-    fireEvent.changeText(getByPlaceholderText('Username'), mockUsername);
-
     await waitFor(async () => {
-      userNameRequiredText = queryByText(/username is required/i);
-      expect(userNameRequiredText).toBeNull();
+      fireEvent.changeText(getByPlaceholderText('Username'), mockUsername);
     });
 
-    fireEvent.changeText(getByPlaceholderText('Password'), mockPassword);
+    userNameRequiredText = queryByText(/username is required/i);
+    expect(userNameRequiredText).toBeNull();
 
     await waitFor(async () => {
-      passwordRequiredText = queryByText(/password is required/i);
-      expect(passwordRequiredText).toBeNull();
+      fireEvent.changeText(getByPlaceholderText('Password'), mockPassword);
     });
+
+    passwordRequiredText = queryByText(/password is required/i);
+    expect(passwordRequiredText).toBeNull();
   });
   it('should click the sign up navigation and be taken to the sign up page', async () => {
     await waitFor(async () => {

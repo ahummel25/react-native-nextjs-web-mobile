@@ -109,7 +109,7 @@ const TextLoginInputField = styled(
   }: TextInputProps & TouchedProps & ErrorProps): JSX.Element => {
     const passwordInput = useRef<TextInput>(null);
 
-    useEffect(() => {
+    useEffect((): void => {
       // https://github.com/facebook/react-native/issues/30123
       if (fontLoaded) {
         passwordInput.current?.setNativeProps({

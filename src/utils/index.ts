@@ -9,7 +9,7 @@ export const LoadFont: FC<LoadFontProps> = ({
 }): null => {
   const [fontLoaded] = useFonts(fontsToLoad);
 
-  useEffect(() => {
+  useEffect((): void => {
     setFontLoaded(fontLoaded);
   }, [fontLoaded, setFontLoaded]);
 
