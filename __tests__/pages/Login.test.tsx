@@ -89,7 +89,7 @@ describe('Login', () => {
 
     const { getByTestId } = component;
 
-    const signUpNav = await getByTestId('sign-up');
+    const signUpNav = getByTestId('sign-up');
 
     await waitFor(async () => {
       fireEvent.press(signUpNav);
