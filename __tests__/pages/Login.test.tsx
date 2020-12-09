@@ -14,7 +14,7 @@ const mockNavigate = jest.fn();
 type OSType = 'ios' | 'android' | 'web';
 
 const osArg = process.argv.filter(x => x.startsWith('-os='))[0];
-const os = osArg ? (osArg.split('=')[1] as OSType) : ('ios' as OSType);
+const os = osArg ? osArg.split('=')[1] : 'ios';
 
 const createTestProps = (
   props: Record<string, unknown>
@@ -33,7 +33,7 @@ describe('Login', () => {
   let props: any;
 
   beforeAll(() => {
-    Platform.OS = os;
+    Platform.OS = os as OSType;
   });
 
   beforeEach(() => {
