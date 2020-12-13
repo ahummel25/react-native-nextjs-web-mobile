@@ -217,7 +217,7 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
                     value={values.password}
                   />
                   <Button
-                    buttonStyle={styles.loginButton}
+                    buttonStyle={[styles.loginButton]}
                     onPress={(event: GestureResponderEvent): void => {
                       handleSubmit(
                         (event as unknown) as FormEvent<HTMLFormElement>
@@ -229,7 +229,7 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
               )}
             </Formik>
             <Button
-              buttonStyle={styles.fbLoginButton}
+              buttonStyle={[styles.fbLoginButton]}
               titleStyle={{ color: colors.lightBlue }}
               title="Login with Facebook"
             />

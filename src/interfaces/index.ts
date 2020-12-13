@@ -1,3 +1,4 @@
+import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import {
   ColorValue,
@@ -12,7 +13,8 @@ export interface DeviceProps {
   device: string;
 }
 
-type ProfileScreenNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
+type LoginScreenNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
+type LoginScreenRouteProp = RouteProp<RootStackList, 'Login'>;
 
 export interface ErrorProps {
   error?: string;
@@ -26,7 +28,8 @@ export interface LoadFontProps {
 }
 
 export interface LoginProps {
-  navigation: ProfileScreenNavigationProp;
+  navigation: LoginScreenNavigationProp;
+  route: LoginScreenRouteProp;
 }
 
 export interface LoginValues {
@@ -37,7 +40,7 @@ export interface LoginValues {
 export interface SignUpButtonProps {
   children?: JSX.Element | string;
   device?: string;
-  navigation: ProfileScreenNavigationProp;
+  navigation: LoginScreenNavigationProp;
 }
 
 export interface TextInputProps {

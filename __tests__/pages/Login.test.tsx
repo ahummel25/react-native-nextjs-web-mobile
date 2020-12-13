@@ -9,12 +9,12 @@ import {
 
 import Login from '../../src/pages/login';
 
-const mockNavigate = jest.fn();
-
 type OSType = 'ios' | 'android' | 'web';
 
-const osArg = process.argv.filter(x => x.startsWith('-os='))[0];
+const osArg = process.argv.find((x: string): boolean => x.startsWith('-os='));
 const os = osArg ? osArg.split('=')[1] : 'ios';
+
+const mockNavigate = jest.fn();
 
 const createTestProps = (
   props: Record<string, unknown>
@@ -44,6 +44,8 @@ describe('Login', () => {
     await waitFor(async () => {
       component = render(<Login {...props} />);
     });
+
+    // jest.spyOn().mockResolvedValue
 
     const { getByText, getAllByA11yLabel, getAllByA11yRole } = component;
 
