@@ -17,7 +17,7 @@ const os = osArg ? osArg.split('=')[1] : 'ios';
 const mockNavigate = jest.fn();
 
 const createTestProps = (
-  props: Record<string, unknown>
+  props?: Record<string, unknown>
 ): Record<string, unknown> => ({
   navigation: {
     navigate: mockNavigate
@@ -37,7 +37,7 @@ describe('Login', () => {
   });
 
   beforeEach(() => {
-    props = createTestProps({});
+    props = createTestProps();
   });
 
   it('renders correctly', async () => {
