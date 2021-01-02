@@ -1,3 +1,11 @@
+jest.mock('react-native/Libraries/Utilities/Platform', () => {
+  const Platform = jest.requireActual(
+    'react-native/Libraries/Utilities/Platform'
+  );
+  Platform.OS = 'android';
+  return Platform;
+});
+
 import React from 'react';
 import {
   fireEvent,
@@ -7,11 +15,6 @@ import {
 } from '@testing-library/react-native';
 
 import Login from '../../src/pages/login';
-
-/*type OSType = 'ios' | 'android' | 'web';
-
-const osArg = process.argv.find((x: string): boolean => x.startsWith('-os='));
-const os = osArg ? osArg.split('=')[1] : 'ios';*/
 
 const mockNavigate = jest.fn();
 
@@ -31,10 +34,6 @@ describe('Login', () => {
   let component: RenderAPI;
   let props: any;
 
-  /*beforeAll(() => {
-    Platform.OS = os as OSType;
-  });*/
-
   beforeEach(() => {
     props = createTestProps();
   });
@@ -43,8 +42,6 @@ describe('Login', () => {
     await waitFor(async () => {
       component = render(<Login {...props} />);
     });
-
-    // jest.spyOn().mockResolvedValue
 
     const { getByText, getAllByA11yLabel, getAllByA11yRole } = component;
 

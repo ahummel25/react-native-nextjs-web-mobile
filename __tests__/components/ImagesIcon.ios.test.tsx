@@ -1,3 +1,11 @@
+jest.mock('react-native/Libraries/Utilities/Platform', () => {
+  const Platform = jest.requireActual(
+    'react-native/Libraries/Utilities/Platform'
+  );
+  Platform.OS = 'ios';
+  return Platform;
+});
+
 import React from 'react';
 import { ImageStyle, Platform } from 'react-native';
 import { Route } from '@react-navigation/routers';
