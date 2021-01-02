@@ -7,13 +7,19 @@ import { getImageIcon } from '../utils/images';
 const ImageIcon: FC<ImageIconProps & Pick<ImageProps, 'style'>> = ({
   navigation,
   iconName,
-  route,
   style
 }): JSX.Element => {
   return (
     <TouchableOpacity
       onPress={(): void => {
-        if (route) navigation.navigate(route.name);
+        switch (iconName) {
+          case 'back':
+            navigation.pop();
+            break;
+          default:
+            navigation.pop();
+            break;
+        }
       }}
       testID="image-icon-press"
     >

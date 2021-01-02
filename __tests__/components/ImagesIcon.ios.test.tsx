@@ -8,7 +8,6 @@ jest.mock('react-native/Libraries/Utilities/Platform', () => {
 
 import React from 'react';
 import { ImageStyle, Platform } from 'react-native';
-import { Route } from '@react-navigation/routers';
 import {
   fireEvent,
   render,
@@ -17,20 +16,14 @@ import {
 } from '@testing-library/react-native';
 
 import ImageIcon from '../../src/components/ImageIcon';
-import { Routes } from '../../src/interfaces';
 import { colors } from '../../src/styles/colors';
 
 describe('ImageIcon', () => {
   let component: RenderAPI;
-  const mockNavigate = jest.fn();
+  const mockPop = jest.fn();
 
   const mockNavigation: any = {
-    navigate: mockNavigate
-  };
-
-  const mockRoute: Route<Routes, undefined> = {
-    key: 'Login',
-    name: 'Login'
+    pop: mockPop
   };
 
   const style: ImageStyle = {
@@ -43,12 +36,7 @@ describe('ImageIcon', () => {
 
   it('renders correctly and navigates', async () => {
     component = render(
-      <ImageIcon
-        navigation={mockNavigation}
-        route={mockRoute}
-        iconName="back"
-        style={style}
-      />
+      <ImageIcon navigation={mockNavigation} iconName="back" style={style} />
     );
 
     expect(component).toBeDefined();
@@ -61,6 +49,7 @@ describe('ImageIcon', () => {
       fireEvent.press(imageIconPress);
     });
 
-    expect(mockNavigate).toHaveBeenCalledWith('Login');
+    expect(mockPop).toHaveBeenCalled();
+    expect(mockPop.call.length).toBe(1);
   });
 });

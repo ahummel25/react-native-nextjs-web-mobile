@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { FontSource } from '@expo-google-fonts/roboto/useFonts';
 import { RouteProp } from '@react-navigation/native';
-import { Route } from '@react-navigation/routers';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackList } from '../routes';
@@ -26,7 +25,6 @@ export interface ErrorProps {
 export interface ImageIconProps {
   navigation: CommonNavigationProp;
   iconName: string;
-  route?: Route<Routes, undefined>;
 }
 
 export interface LoadFontProps {

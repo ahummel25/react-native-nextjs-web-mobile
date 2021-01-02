@@ -61,7 +61,6 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
                 <ImageIcon
                   iconName="back"
                   navigation={navigation}
-                  route={route}
                   style={style}
                 />
               )
