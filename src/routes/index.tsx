@@ -51,7 +51,15 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
               // eslint-disable-next-line react/display-name
               headerLeft: (): JSX.Element => (
                 <TouchableOpacity
-                  onPress={(): void => navigation.navigate('Login')}
+                  onPress={(): void => {
+                    if ('navigate' in navigation) {
+                      navigation.navigate('Login');
+                    } else {
+                      console.debug('navigate not found on navigation!', {
+                        navigation
+                      });
+                    }
+                  }}
                 >
                   <Image
                     source={require('../../assets/images/back.png')}
