@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Image, Platform, TouchableOpacity } from 'react-native';
+import { ImageStyle, Platform } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import ImageIcon from '../components/ImageIcon';
 import Login from '../pages/login';
 import SignUp from '../pages/sign-up';
 import { colors } from '../styles/colors';
@@ -47,32 +48,22 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
           };
 
           if (route.name === 'SignUp') {
+            const style: ImageStyle = {
+              marginBottom: Platform.OS === 'android' ? 10 : 0,
+              marginLeft: 10,
+              width: 20,
+              height: 20,
+              tintColor: colors.lightBlue
+            };
             Object.assign(options, {
               // eslint-disable-next-line react/display-name
               headerLeft: (): JSX.Element => (
-                <TouchableOpacity
-                  onPress={(): void => {
-                    if ('navigate' in navigation) {
-                      navigation.navigate('Login');
-                    } else {
-                      console.debug('navigate not found on navigation!', {
-                        navigation
-                      });
-                    }
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/images/back.png')}
-                    fadeDuration={0}
-                    style={{
-                      marginBottom: Platform.OS === 'android' ? 10 : 0,
-                      marginLeft: 10,
-                      width: 20,
-                      height: 20,
-                      tintColor: colors.lightBlue
-                    }}
-                  />
-                </TouchableOpacity>
+                <ImageIcon
+                  iconName="back"
+                  navigation={navigation}
+                  route={route}
+                  style={style}
+                />
               )
             });
           }

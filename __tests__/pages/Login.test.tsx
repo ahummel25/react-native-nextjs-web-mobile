@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import {
   fireEvent,
   render,
@@ -9,10 +8,10 @@ import {
 
 import Login from '../../src/pages/login';
 
-type OSType = 'ios' | 'android' | 'web';
+/*type OSType = 'ios' | 'android' | 'web';
 
 const osArg = process.argv.find((x: string): boolean => x.startsWith('-os='));
-const os = osArg ? osArg.split('=')[1] : 'ios';
+const os = osArg ? osArg.split('=')[1] : 'ios';*/
 
 const mockNavigate = jest.fn();
 
@@ -32,9 +31,9 @@ describe('Login', () => {
   let component: RenderAPI;
   let props: any;
 
-  beforeAll(() => {
+  /*beforeAll(() => {
     Platform.OS = os as OSType;
-  });
+  });*/
 
   beforeEach(() => {
     props = createTestProps();

@@ -17,11 +17,11 @@ import { Roboto_400Regular } from '@expo-google-fonts/roboto';
 import {
   DeviceProps,
   ErrorProps,
-  LoginProps,
-  SignUpButtonProps,
   TextInputProps,
   TouchedProps
 } from '../interfaces';
+import { LoginProps } from '../interfaces/login';
+import { SignUpButtonProps } from '../interfaces/signup';
 import { colors } from '../styles/colors';
 import { LoadFont } from '../utils';
 

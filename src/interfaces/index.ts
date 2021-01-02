@@ -1,23 +1,32 @@
-import { RouteProp } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import {
   ColorValue,
   NativeSyntheticEvent,
   TextInputFocusEventData
 } from 'react-native';
 import { FontSource } from '@expo-google-fonts/roboto/useFonts';
+import { RouteProp } from '@react-navigation/native';
+import { Route } from '@react-navigation/routers';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackList } from '../routes';
+
+export type Routes = 'Login' | 'SignUp';
+
+export type CommonNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
+export type CommonRouteProp = RouteProp<RootStackList, 'Login'>;
 
 export interface DeviceProps {
   device: string;
 }
 
-type LoginScreenNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
-type LoginScreenRouteProp = RouteProp<RootStackList, 'Login'>;
-
 export interface ErrorProps {
   error?: string;
+}
+
+export interface ImageIconProps {
+  navigation: CommonNavigationProp;
+  iconName: string;
+  route?: Route<Routes, undefined>;
 }
 
 export interface LoadFontProps {
@@ -25,22 +34,6 @@ export interface LoadFontProps {
     [fontFamily: string]: FontSource;
   };
   setFontLoaded: (fontLoaded: boolean) => void;
-}
-
-export interface LoginProps {
-  navigation: LoginScreenNavigationProp;
-  route: LoginScreenRouteProp;
-}
-
-export interface LoginValues {
-  username: string;
-  password: string;
-}
-
-export interface SignUpButtonProps {
-  children?: JSX.Element | string;
-  device?: string;
-  navigation: LoginScreenNavigationProp;
 }
 
 export interface TextInputProps {
