@@ -16,40 +16,28 @@ import {
 
 import Login from '../../src/pages/login';
 
-/*type OSType = 'ios' | 'android' | 'web';
-  
-  const osArg = process.argv.find((x: string): boolean => x.startsWith('-os='));
-  const os = osArg ? osArg.split('=')[1] : 'ios';*/
-
 const mockNavigate = jest.fn();
 
-const createTestProps = (
-  props?: Record<string, unknown>
-): Record<string, unknown> => ({
-  navigation: {
-    navigate: mockNavigate
-  },
-  ...props
-});
+const mockNavigation: any = {
+  navigate: mockNavigate
+};
+
+const mockRoute: Readonly<{ key: string; name: 'Login' }> = {
+  key: 'mockRouteKey',
+  name: 'Login'
+};
 
 describe('Login', () => {
   const mockUsername = 'mock-username';
   const mockPassword = 'mock-password';
 
   let component: RenderAPI;
-  let props: any;
-
-  //   beforeAll(() => {
-  //     // Platform.OS = os as OSType;
-  //   });
-
-  beforeEach(() => {
-    props = createTestProps();
-  });
 
   it('renders correctly', async () => {
     await waitFor(async () => {
-      component = render(<Login {...props} />);
+      component = render(
+        <Login navigation={mockNavigation} route={mockRoute} />
+      );
     });
 
     const { getByText, getAllByA11yLabel, getAllByA11yRole } = component;
@@ -63,10 +51,12 @@ describe('Login', () => {
     expect(appNameText).not.toBeNull();
   });
   it(`submits the login form with empty username and password fields,
-          renders the appropriate error messages,
-          then populates the fields and verifies the errors are gone`, async () => {
+			  renders the appropriate error messages,
+			  then populates the fields and verifies the errors are gone`, async () => {
     await waitFor(async () => {
-      component = render(<Login {...props} />);
+      component = render(
+        <Login navigation={mockNavigation} route={mockRoute} />
+      );
     });
 
     const { getAllByA11yRole, getByPlaceholderText, queryByText } = component;
@@ -101,7 +91,9 @@ describe('Login', () => {
   });
   it('should click the sign up navigation and be taken to the sign up page', async () => {
     await waitFor(async () => {
-      component = render(<Login {...props} />);
+      component = render(
+        <Login navigation={mockNavigation} route={mockRoute} />
+      );
     });
 
     const { getByA11yLabel } = component;
