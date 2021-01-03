@@ -85,7 +85,8 @@ const SignUpText = styled(
     return (
       <>
         <Text
-          testID="sign-up"
+          accessibilityLabel="Go to sign up"
+          accessibilityRole="link"
           onPress={(): void => {
             device === 'web'
               ? router.push('/sign-up')

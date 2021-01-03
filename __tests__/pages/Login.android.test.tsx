@@ -54,8 +54,8 @@ describe('Login', () => {
     expect(appNameText).not.toBeNull();
   });
   it(`submits the login form with empty username and password fields,
-        renders the appropriate error messages,
-        then populates the fields and verifies the errors are gone`, async () => {
+			renders the appropriate error messages,
+			then populates the fields and verifies the errors are gone`, async () => {
     await waitFor(async () => {
       component = render(<Login {...props} />);
     });
@@ -95,9 +95,9 @@ describe('Login', () => {
       component = render(<Login {...props} />);
     });
 
-    const { getByTestId } = component;
+    const { getByA11yLabel } = component;
 
-    const signUpNav = getByTestId('sign-up');
+    const signUpNav = getByA11yLabel('Go to sign up');
 
     await waitFor(async () => {
       fireEvent.press(signUpNav);

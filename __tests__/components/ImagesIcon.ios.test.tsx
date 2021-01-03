@@ -41,9 +41,9 @@ describe('ImageIcon', () => {
 
     expect(component).toBeDefined();
 
-    const { getByTestId } = component;
+    const { getByA11yLabel } = component;
 
-    const imageIconPress = getByTestId('image-icon-press');
+    const imageIconPress = getByA11yLabel('Back to Login');
 
     await waitFor(async () => {
       fireEvent.press(imageIconPress);

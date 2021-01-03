@@ -8,24 +8,23 @@ const ImageIcon: FC<ImageIconProps & Pick<ImageProps, 'style'>> = ({
   navigation,
   iconName,
   style
-}): JSX.Element => {
-  return (
-    <TouchableOpacity
-      onPress={(): void => {
-        switch (iconName) {
-          case 'back':
-            navigation.pop();
-            break;
-          default:
-            navigation.pop();
-            break;
-        }
-      }}
-      testID="image-icon-press"
-    >
-      <Image source={getImageIcon(iconName)} fadeDuration={0} style={style} />
-    </TouchableOpacity>
-  );
-};
+}): JSX.Element => (
+  <TouchableOpacity
+    accessibilityLabel="Back to Login"
+    accessibilityRole="image"
+    onPress={(): void => {
+      switch (iconName) {
+        case 'back':
+          navigation.pop();
+          break;
+        default:
+          navigation.pop();
+          break;
+      }
+    }}
+  >
+    <Image source={getImageIcon(iconName)} fadeDuration={0} style={style} />
+  </TouchableOpacity>
+);
 
 export default ImageIcon;

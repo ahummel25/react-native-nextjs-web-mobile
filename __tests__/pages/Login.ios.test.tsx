@@ -104,9 +104,9 @@ describe('Login', () => {
       component = render(<Login {...props} />);
     });
 
-    const { getByTestId } = component;
+    const { getByA11yLabel } = component;
 
-    const signUpNav = getByTestId('sign-up');
+    const signUpNav = getByA11yLabel('Go to sign up');
 
     await waitFor(async () => {
       fireEvent.press(signUpNav);
