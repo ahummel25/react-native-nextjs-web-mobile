@@ -14,7 +14,7 @@ export type RootStackList = {
   SignUp: undefined;
 };
 
-const Stack = createStackNavigator<RootStackList>();
+const { Navigator, Screen } = createStackNavigator<RootStackList>();
 
 const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
   const loginOptions = {
@@ -39,7 +39,7 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Navigator
         initialRouteName="Login"
         headerMode="screen"
         screenOptions={({ route, navigation }): Record<string, unknown> => {
@@ -71,13 +71,9 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
           return options;
         }}
       >
-        <Stack.Screen name="Login" component={Login} options={loginOptions} />
-        <Stack.Screen
-          name="SignUp"
-          component={SignUp}
-          options={commonOptions}
-        />
-      </Stack.Navigator>
+        <Screen name="Login" component={Login} options={loginOptions} />
+        <Screen name="SignUp" component={SignUp} options={commonOptions} />
+      </Navigator>
     </NavigationContainer>
   );
 };
