@@ -11,8 +11,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackList } from '../routes';
 
-export type CommonNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
-export type CommonRouteProp = RouteProp<RootStackList, 'Login'>;
+export type CommonNavigationProp = StackNavigationProp<
+  RootStackList,
+  keyof RootStackList
+>;
+export type CommonRouteProp = RouteProp<RootStackList, keyof RootStackList>;
 
 export interface DeviceProps {
   device: string;
