@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
-import { Image, ImageProps, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 import { ImageIconProps } from '../interfaces';
 import { getImageIcon } from '../utils/images';
 
-const ImageIcon: FC<ImageIconProps & Pick<ImageProps, 'style'>> = ({
-  navigation,
+const ImageIcon: FC<ImageIconProps> = ({
   iconName,
+  navigation,
   style
 }): JSX.Element => (
   <TouchableOpacity

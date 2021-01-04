@@ -1,6 +1,8 @@
 import {
   ColorValue,
+  ImageStyle,
   NativeSyntheticEvent,
+  StyleProp,
   TextInputFocusEventData
 } from 'react-native';
 import { FontSource } from '@expo-google-fonts/roboto/useFonts';
@@ -8,8 +10,6 @@ import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackList } from '../routes';
-
-export type Routes = 'Login' | 'SignUp';
 
 export type CommonNavigationProp = StackNavigationProp<RootStackList, 'Login'>;
 export type CommonRouteProp = RouteProp<RootStackList, 'Login'>;
@@ -23,8 +23,9 @@ export interface ErrorProps {
 }
 
 export interface ImageIconProps {
-  navigation: CommonNavigationProp;
   iconName: string;
+  navigation: CommonNavigationProp;
+  style: StyleProp<ImageStyle>;
 }
 
 export interface LoadFontProps {
