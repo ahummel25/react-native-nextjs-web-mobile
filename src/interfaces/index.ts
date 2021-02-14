@@ -26,6 +26,7 @@ export interface ErrorProps {
 }
 
 export interface ImageIconProps {
+  a11yLabel: string;
   iconName: string;
   navigation: CommonNavigationProp;
   style: StyleProp<ImageStyle>;
@@ -39,7 +40,6 @@ export interface LoadFontProps {
 }
 
 export interface TextInputProps {
-  fontLoaded?: boolean;
   onChangeText?: (text: string) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   placeholder?: string;

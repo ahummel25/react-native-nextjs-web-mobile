@@ -1,10 +1,14 @@
-import { ImageSourcePropType } from 'react-native';
+import { Image, ImageResolvedAssetSource } from 'react-native';
 
-export const getImageIcon = (iconName: string): ImageSourcePropType => {
+import backImg from '../../assets/images/back.png';
+
+export const getImageAssetSource = (
+  iconName: string
+): ImageResolvedAssetSource => {
   switch (iconName) {
     case 'back':
-      return require('../../assets/images/back.png');
+      return Image.resolveAssetSource(backImg);
     default:
-      return require('../../assets/images/back.png');
+      return Image.resolveAssetSource(backImg);
   }
 };

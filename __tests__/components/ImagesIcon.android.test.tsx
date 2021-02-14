@@ -20,6 +20,7 @@ import { colors } from '../../src/styles/colors';
 
 describe('ImageIcon', () => {
   let component: RenderAPI;
+  const mockA11yLabel = 'Back to Login';
   const mockPop = jest.fn();
 
   const mockNavigation: any = {
@@ -36,7 +37,12 @@ describe('ImageIcon', () => {
 
   it('renders correctly and navigates', async () => {
     component = render(
-      <ImageIcon navigation={mockNavigation} iconName="back" style={style} />
+      <ImageIcon
+        a11yLabel={mockA11yLabel}
+        navigation={mockNavigation}
+        iconName="back"
+        style={style}
+      />
     );
 
     expect(component).toBeDefined();

@@ -60,6 +60,7 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
               // eslint-disable-next-line react/display-name
               headerLeft: (): JSX.Element => (
                 <ImageIcon
+                  a11yLabel="Back to Login"
                   iconName="back"
                   navigation={navigation}
                   style={style}

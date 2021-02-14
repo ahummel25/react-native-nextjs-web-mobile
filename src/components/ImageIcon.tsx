@@ -2,15 +2,16 @@ import React, { FC } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 
 import { ImageIconProps } from '../interfaces';
-import { getImageIcon } from '../utils/images';
+import { getImageAssetSource } from '../utils/images';
 
 const ImageIcon: FC<ImageIconProps> = ({
+  a11yLabel,
   iconName,
   navigation,
   style
 }): JSX.Element => (
   <TouchableOpacity
-    accessibilityLabel="Back to Login"
+    accessibilityLabel={a11yLabel}
     accessibilityRole="image"
     onPress={(): void => {
       switch (iconName) {
@@ -23,7 +24,11 @@ const ImageIcon: FC<ImageIconProps> = ({
       }
     }}
   >
-    <Image source={getImageIcon(iconName)} fadeDuration={0} style={style} />
+    <Image
+      source={{ uri: getImageAssetSource(iconName).uri }}
+      fadeDuration={0}
+      style={style}
+    />
   </TouchableOpacity>
 );
 
