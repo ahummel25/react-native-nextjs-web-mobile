@@ -170,7 +170,7 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
         setContainerWidth('75%');
       } else {
         // Else 35% for desktop browser
-        setContainerWidth('35%');
+        setContainerWidth('25%');
       }
     }
   }, [width]);
