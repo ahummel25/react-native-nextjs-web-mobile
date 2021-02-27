@@ -2,5 +2,8 @@
 // Learn more: https://github.com/expo/expo/blob/master/docs/pages/versions/unversioned/guides/using-nextjs.md#shared-steps
 
 module.exports = {
-  presets: ['@expo/next-adapter/babel']
+  presets: ['@expo/next-adapter/babel'],
+  plugins: [
+    ['styled-components', { ssr: true, displayName: true, preprocess: false }]
+  ]
 };

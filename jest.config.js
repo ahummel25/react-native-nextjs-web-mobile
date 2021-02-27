@@ -20,7 +20,10 @@ module.exports = {
     '\\.(jpg|jpeg|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       '<rootDir>/__mocks__/fileTransformer.js'
   },
-  setupFiles: ['./node_modules/react-native-gesture-handler/jestSetup.js'],
+  setupFiles: [
+    './node_modules/react-native-gesture-handler/jestSetup.js'
+    // '<rootDir>/__mocks__/setup-mocks.ts'
+  ],
   setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
   verbose: true
 };

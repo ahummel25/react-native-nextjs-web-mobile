@@ -17,6 +17,9 @@ export type CommonNavigationProp = StackNavigationProp<
 >;
 export type CommonRouteProp = RouteProp<RootStackList, keyof RootStackList>;
 
+export interface ContainerProps extends DeviceProps {
+  containerWidth: string;
+}
 export interface DeviceProps {
   device: string;
 }
