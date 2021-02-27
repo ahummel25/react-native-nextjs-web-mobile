@@ -164,14 +164,15 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
   const [containerWidth, setContainerWidth] = useState<string>('');
 
   useEffect((): void => {
+    if (Platform.OS !== 'web') {
+      return;
+    }
     // Set to 75% if rendered on a mobile browser, but not the native OS (android, iOS)
-    if (Platform.OS === 'web') {
-      if (width <= bp.md) {
-        setContainerWidth('75%');
-      } else {
-        // Else 35% for desktop browser
-        setContainerWidth('25%');
-      }
+    if (width <= bp.md) {
+      setContainerWidth('75%');
+    } else {
+      // Else 35% for desktop browser
+      setContainerWidth('25%');
     }
   }, [width]);
 
