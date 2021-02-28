@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useEffect, useRef, useState } from 'react';
+import React, { FC, FormEvent, useRef } from 'react';
 import {
   GestureResponderEvent,
   KeyboardAvoidingView,
@@ -13,18 +13,10 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components/native';
 import * as Yup from 'yup';
 
-import { useWindowDimensions } from '../hooks';
-import {
-  ContainerProps,
-  DeviceProps,
-  ErrorProps,
-  TextInputProps,
-  TouchedProps
-} from '../interfaces';
+import { ErrorProps, TextInputProps, TouchedProps } from '../interfaces';
 import { LoginProps } from '../interfaces/login';
 import { SignUpButtonProps } from '../interfaces/signup';
 import { colors } from '../styles/colors';
-import { breakpoints as bp } from '../styles/variables';
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -53,17 +45,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const LoginScreenContainer = styled.View<ContainerProps>`
-  flex: 1;
-  margin: auto;
-  width: ${(props): string =>
-    props.device === 'web' ? props.containerWidth : '75%'};
-`;
-
 const KeyboardAvoidingViewStyled = styled(({ ...rest }) => (
   <KeyboardAvoidingView {...rest} />
 ))`
   flex: 1;
+  margin: auto;
+  width: ${Platform.OS == 'web' ? '100%' : '75%'};
 `;
 
 const LoginFormView = styled.View`
@@ -72,17 +59,16 @@ const LoginFormView = styled.View`
   text-align: center;
 `;
 
-const LogoText = styled.Text<DeviceProps>`
+const LogoText = styled.Text`
   font-size: 40px;
-  font-weight: ${(props): string =>
-    props.device === 'android' ? 'bold' : '600'};
+  font-weight: ${Platform.OS == 'android' ? 'bold' : '600'};
   margin-top: 150px;
   margin-bottom: 30px;
   text-align: center;
 `;
 
 const SignUpText = styled(
-  ({ device, navigation, ...rest }: SignUpButtonProps): JSX.Element => {
+  ({ navigation, ...rest }: SignUpButtonProps): JSX.Element => {
     const router = useRouter();
     return (
       <>
@@ -90,7 +76,7 @@ const SignUpText = styled(
           accessibilityLabel="Go to sign up"
           accessibilityRole="link"
           onPress={(): void => {
-            device === 'web'
+            Platform.OS === 'web'
               ? router.push('/sign-up')
               : navigation.navigate('SignUp');
           }}
@@ -159,99 +145,72 @@ const TextLoginInputField = styled(
 
 const initialLoginValues = { username: '', password: '' };
 
-const Login: FC<LoginProps> = ({ navigation }): JSX.Element => {
-  const { width } = useWindowDimensions();
-  const [containerWidth, setContainerWidth] = useState<string>('');
-
-  useEffect((): void => {
-    if (Platform.OS !== 'web') {
-      return;
-    }
-    // Set to 75% if rendered on a mobile browser, but not the native OS (android, iOS)
-    if (width <= bp.md) {
-      setContainerWidth('75%');
-    } else {
-      // Else 35% for desktop browser
-      setContainerWidth('25%');
-    }
-  }, [width]);
-
-  return (
-    <>
-      <KeyboardAvoidingViewStyled
-        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
-      >
-        <LoginScreenContainer
-          accessibilityLabel="Login Container"
-          device={Platform.OS}
-          containerWidth={containerWidth}
+const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
+  <>
+    <KeyboardAvoidingViewStyled
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+    >
+      <LoginFormView>
+        <LogoText>Instamobile</LogoText>
+        <Formik
+          initialValues={initialLoginValues}
+          onSubmit={async (values): Promise<void> => {
+            console.log(values);
+          }}
+          validationSchema={loginSchema}
         >
-          <LoginFormView>
-            <LogoText device={Platform.OS}>Instamobile</LogoText>
-            <Formik
-              initialValues={initialLoginValues}
-              onSubmit={async (values): Promise<void> => {
-                console.log(values);
-              }}
-              validationSchema={loginSchema}
-            >
-              {({
-                errors,
-                handleChange,
-                handleBlur,
-                handleSubmit,
-                touched,
-                values
-              }): JSX.Element => (
-                <>
-                  <TextLoginInputField
-                    error={errors.username}
-                    onChangeText={handleChange('username')}
-                    onBlur={handleBlur('username')}
-                    placeholder="Username"
-                    placeholderTextColor={colors.placeholderTextColor}
-                    touched={touched.username}
-                    value={values.username}
-                  />
-                  <TextLoginInputField
-                    error={errors.password}
-                    onChangeText={handleChange('password')}
-                    onBlur={handleBlur('password')}
-                    placeholder="Password"
-                    placeholderTextColor={colors.placeholderTextColor}
-                    secureTextEntry
-                    touched={touched.password}
-                    value={values.password}
-                  />
-                  <Button
-                    buttonStyle={[styles.loginButton]}
-                    onPress={(event: GestureResponderEvent): void => {
-                      handleSubmit(
-                        (event as unknown) as FormEvent<HTMLFormElement>
-                      );
-                    }}
-                    title="Login"
-                  />
-                </>
-              )}
-            </Formik>
-            <Button
-              buttonStyle={[styles.fbLoginButton]}
-              titleStyle={{ color: colors.lightBlue }}
-              title="Login with Facebook"
-            />
-            <Text style={styles.signUp}>
-              Don&apos;t have an account?{' '}
-              <SignUpText device={Platform.OS} navigation={navigation}>
-                Sign up here
-              </SignUpText>
-              .
-            </Text>
-          </LoginFormView>
-        </LoginScreenContainer>
-      </KeyboardAvoidingViewStyled>
-    </>
-  );
-};
+          {({
+            errors,
+            handleChange,
+            handleBlur,
+            handleSubmit,
+            touched,
+            values
+          }): JSX.Element => (
+            <>
+              <TextLoginInputField
+                error={errors.username}
+                onChangeText={handleChange('username')}
+                onBlur={handleBlur('username')}
+                placeholder="Username"
+                placeholderTextColor={colors.placeholderTextColor}
+                touched={touched.username}
+                value={values.username}
+              />
+              <TextLoginInputField
+                error={errors.password}
+                onChangeText={handleChange('password')}
+                onBlur={handleBlur('password')}
+                placeholder="Password"
+                placeholderTextColor={colors.placeholderTextColor}
+                secureTextEntry
+                touched={touched.password}
+                value={values.password}
+              />
+              <Button
+                buttonStyle={[styles.loginButton]}
+                onPress={(event: GestureResponderEvent): void => {
+                  handleSubmit(
+                    (event as unknown) as FormEvent<HTMLFormElement>
+                  );
+                }}
+                title="Login"
+              />
+            </>
+          )}
+        </Formik>
+        <Button
+          buttonStyle={[styles.fbLoginButton]}
+          titleStyle={{ color: colors.lightBlue }}
+          title="Login with Facebook"
+        />
+        <Text style={styles.signUp}>
+          Don&apos;t have an account?{' '}
+          <SignUpText navigation={navigation}>Sign up here</SignUpText>.
+        </Text>
+      </LoginFormView>
+    </KeyboardAvoidingViewStyled>
+  </>
+);
 
 export default Login;

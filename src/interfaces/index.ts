@@ -21,7 +21,7 @@ export interface ContainerProps extends DeviceProps {
   containerWidth: string;
 }
 export interface DeviceProps {
-  device: string;
+  device?: string;
 }
 
 export interface ErrorProps {

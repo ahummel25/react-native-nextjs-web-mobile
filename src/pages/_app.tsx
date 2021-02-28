@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AppProps } from 'next/app';
+import styled from 'styled-components/native';
+
+import { useWindowDimensions } from '../hooks';
+import { breakpoints as bp } from '../styles/variables';
+import { ContainerProps } from '../interfaces';
 
 import '../styles/global.css';
 
+const Container = styled.View<ContainerProps>`
+  flex: 1;
+  margin: auto;
+  width: ${(props): string => props.containerWidth};
+`;
 /**
  * @returns {JSX.Element} The NextJS top-level document.
  */
-const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => (
-  <Component {...pageProps} />
-);
+const App = ({ Component, pageProps }: AppProps): JSX.Element => {
+  const { width } = useWindowDimensions();
+  const [containerWidth, setContainerWidth] = useState<string>('');
 
-export default MyApp;
+  useEffect((): void => {
+    // Set to 75% if rendered on a mobile browser, but not the native OS (android, iOS)
+    if (width <= bp.md) {
+      setContainerWidth('75%');
+    } else {
+      // Else 35% for desktop browser
+      setContainerWidth('25%');
+    }
+  }, [width]);
+
+  return (
+    <Container containerWidth={containerWidth}>
+      <Component {...pageProps} />
+    </Container>
+  );
+};
+
+export default App;
