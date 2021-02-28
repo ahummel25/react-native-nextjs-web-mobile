@@ -9,14 +9,14 @@ jest.mock('react-native/Libraries/Utilities/Platform', () => {
 import React from 'react';
 import { render, RenderAPI, waitFor } from '@testing-library/react-native';
 
-import SignUp from '../../src/pages/sign-up';
+import Register from '../../src/pages/register';
 
 describe('Login', () => {
   let component: RenderAPI;
 
   it('renders correctly', async () => {
     await waitFor(async () => {
-      component = render(<SignUp />);
+      component = render(<Register />);
     });
 
     expect(component).toBeDefined();

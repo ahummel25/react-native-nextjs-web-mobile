@@ -8,10 +8,10 @@ const Container = styled.View`
   justify-content: center;
 `;
 
-const SignUp: FC<Record<string, unknown>> = (): JSX.Element => (
+const Register: FC<Record<string, unknown>> = (): JSX.Element => (
   <Container>
     <Text>Sign Up Page Coming Soon!</Text>
   </Container>
 );
 
-export default SignUp;
+export default Register;

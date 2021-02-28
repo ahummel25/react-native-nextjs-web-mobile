@@ -6,12 +6,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ImageIcon from '../components/ImageIcon';
 import Login from '../pages/login';
-import SignUp from '../pages/sign-up';
+import Register from '../pages/register';
 import { colors } from '../styles/colors';
 
 export type RootStackList = {
   Login: undefined;
-  SignUp: undefined;
+  Register: undefined;
 };
 
 const { Navigator, Screen } = createStackNavigator<RootStackList>();
@@ -48,7 +48,7 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
             headerTitleAlign: 'center'
           };
 
-          if (route.name === 'SignUp') {
+          if (route.name === 'Register') {
             const style: ImageStyle = {
               marginBottom: Platform.OS === 'android' ? 10 : 0,
               marginLeft: 10,
@@ -73,7 +73,7 @@ const RoutesContainer: FC<Record<string, unknown>> = (): JSX.Element => {
         }}
       >
         <Screen name="Login" component={Login} options={loginOptions} />
-        <Screen name="SignUp" component={SignUp} options={commonOptions} />
+        <Screen name="Register" component={Register} options={commonOptions} />
       </Navigator>
     </NavigationContainer>
   );

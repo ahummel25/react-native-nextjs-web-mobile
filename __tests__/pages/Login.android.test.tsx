@@ -104,6 +104,6 @@ describe('Login', () => {
       fireEvent.press(signUpNav);
     });
 
-    expect(mockNavigate).toHaveBeenCalledWith('SignUp');
+    expect(mockNavigate).toHaveBeenCalledWith('Register');
   });
 });

@@ -77,8 +77,8 @@ const SignUpText = styled(
           accessibilityRole="link"
           onPress={(): void => {
             Platform.OS === 'web'
-              ? router.push('/sign-up')
-              : navigation.navigate('SignUp');
+              ? router.push('/register')
+              : navigation.navigate('Register');
           }}
           {...rest}
         />
