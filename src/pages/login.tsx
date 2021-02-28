@@ -17,6 +17,8 @@ import { ErrorProps, TextInputProps, TouchedProps } from '../interfaces';
 import { LoginProps } from '../interfaces/login';
 import { SignUpButtonProps } from '../interfaces/signup';
 import { colors } from '../styles/colors';
+import { doLogin } from '../queries';
+import { userAuthApi } from '../utils/api';
 
 const loginSchema = Yup.object().shape({
   username: Yup.string().required('Username is required'),
@@ -156,6 +158,33 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
           initialValues={initialLoginValues}
           onSubmit={async (values): Promise<void> => {
             console.log(values);
+            const myHeaders = new Headers();
+            myHeaders.append('Content-Type', 'application/json');
+
+            const graphql = JSON.stringify({
+              query: doLogin,
+              variables: {
+                loginUserInput: {
+                  username: values.username,
+                  password: values.password
+                }
+              }
+            });
+            const requestOptions: RequestInit = {
+              body: graphql,
+              headers: myHeaders,
+              method: 'POST',
+              redirect: 'follow'
+            };
+
+            try {
+              const response = await fetch(userAuthApi, requestOptions);
+
+              const data = await response.json();
+              console.log(data);
+            } catch (err) {
+              console.error('Error', err);
+            }
           }}
           validationSchema={loginSchema}
         >
