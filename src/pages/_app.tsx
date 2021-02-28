@@ -22,10 +22,11 @@ const App = ({ Component, pageProps }: AppProps): JSX.Element => {
 
   useEffect((): void => {
     // Set to 75% if rendered on a mobile browser, but not the native OS (android, iOS)
-    if (width <= bp.md) {
+    if (width < bp.md) {
       setContainerWidth('75%');
+    } else if (width >= bp.md && width <= bp.xl) {
+      setContainerWidth('45%');
     } else {
-      // Else 35% for desktop browser
       setContainerWidth('25%');
     }
   }, [width]);
