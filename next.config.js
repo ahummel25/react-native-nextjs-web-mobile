@@ -8,7 +8,6 @@ const withImages = require('next-images');
 module.exports = withExpo(
   withFonts(
     withImages({
-      projectRoot: __dirname,
       env: {
         STAGE: process.env.STAGE
       }
