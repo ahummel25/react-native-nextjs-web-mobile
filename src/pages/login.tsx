@@ -2,10 +2,12 @@ import React, { FC, FormEvent, useRef } from 'react';
 import {
   GestureResponderEvent,
   KeyboardAvoidingView,
+  NativeSyntheticEvent,
   Platform,
   StyleSheet,
   Text,
-  TextInput
+  TextInput,
+  TextInputSubmitEditingEventData
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
@@ -200,6 +202,13 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
                 error={errors.username}
                 onChangeText={handleChange('username')}
                 onBlur={handleBlur('username')}
+                onSubmitEditing={(
+                  event: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+                ): void => {
+                  handleSubmit(
+                    (event as unknown) as FormEvent<HTMLFormElement>
+                  );
+                }}
                 placeholder="Username"
                 placeholderTextColor={colors.placeholderTextColor}
                 touched={touched.username}
@@ -209,6 +218,13 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
                 error={errors.password}
                 onChangeText={handleChange('password')}
                 onBlur={handleBlur('password')}
+                onSubmitEditing={(
+                  event: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+                ): void => {
+                  handleSubmit(
+                    (event as unknown) as FormEvent<HTMLFormElement>
+                  );
+                }}
                 placeholder="Password"
                 placeholderTextColor={colors.placeholderTextColor}
                 secureTextEntry

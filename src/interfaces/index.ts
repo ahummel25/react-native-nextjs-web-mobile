@@ -3,7 +3,8 @@ import {
   ImageStyle,
   NativeSyntheticEvent,
   StyleProp,
-  TextInputFocusEventData
+  TextInputFocusEventData,
+  TextInputSubmitEditingEventData
 } from 'react-native';
 import { FontSource } from '@expo-google-fonts/roboto/useFonts';
 import { RouteProp } from '@react-navigation/native';
@@ -45,6 +46,9 @@ export interface LoadFontProps {
 export interface TextInputProps {
   onChangeText?: (text: string) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onSubmitEditing?: (
+    e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
+  ) => void;
   placeholder?: string;
   placeholderTextColor?: ColorValue;
   secureTextEntry?: boolean;
