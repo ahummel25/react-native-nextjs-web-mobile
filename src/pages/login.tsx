@@ -157,7 +157,6 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
         <Formik
           initialValues={initialLoginValues}
           onSubmit={async (values): Promise<void> => {
-            console.log(values);
             const myHeaders = new Headers();
             myHeaders.append('Content-Type', 'application/json');
 
