@@ -1,0 +1,7 @@
+instamobile-qa:
+  component: '@sls-next/serverless-component'
+  inputs:
+    nextConfigDir: ../../
+    bucketName: instamobile-qa
+    cloudfront:
+      comment: instamobile-qa
