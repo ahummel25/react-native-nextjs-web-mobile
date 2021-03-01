@@ -3,6 +3,8 @@
     "android-dev": "echo STAGE=dev > .env && expo start --android",
     "build": "next build",
     "build-web": "react-scripts build",
+    "deploy-web-dev": "cd environment/dev && STAGE=dev serverless",
+    "deploy-web-qa": "cd environment/qa && STAGE=qa serverless",
     "dev": "next dev",
     "eject": "expo eject",
     "expo-start": "expo start",
