@@ -1,12 +1,4 @@
-export const doLogin = `
-query DoLogin($loginUserInput: AuthParams!) {
-	authenticateUser(params: $loginUserInput) {
-	  user {
-		...User
-	  }
-	}
-  }
-  
+const userFragment = `
   fragment User on User {
 	userID
 	userName
@@ -14,4 +6,16 @@ query DoLogin($loginUserInput: AuthParams!) {
 	lastName
 	email
   }
+`;
+
+export const doLogin = `
+  query DoLogin($loginUserInput: AuthParams!) {
+	authenticateUser(params: $loginUserInput) {
+	  user {
+		...User
+	  }
+	}
+  }
+  
+  ${userFragment}
 `;
