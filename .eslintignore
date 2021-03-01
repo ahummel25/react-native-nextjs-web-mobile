@@ -6,4 +6,5 @@ node_modules
 static
 .gitignore
 .eslintignore
+src/utils/api.ts
 public/*.min.js

@@ -88,6 +88,10 @@ describe('Login', () => {
 
     passwordRequiredText = queryByText(/password is required/i);
     expect(passwordRequiredText).toBeNull();
+
+    await waitFor(async () => {
+      fireEvent.press(buttons[0]);
+    });
   });
   it('should click the sign up navigation and be taken to the sign up page', async () => {
     await waitFor(async () => {

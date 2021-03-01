@@ -4,6 +4,17 @@
 module.exports = {
   presets: ['@expo/next-adapter/babel'],
   plugins: [
-    ['styled-components', { ssr: true, displayName: true, preprocess: false }]
+    ['styled-components', { ssr: true, displayName: true, preprocess: false }],
+    [
+      'module:react-native-dotenv',
+      {
+        moduleName: '@env',
+        path: '.env',
+        blacklist: null,
+        whitelist: null,
+        safe: false,
+        allowUndefined: true
+      }
+    ]
   ]
 };

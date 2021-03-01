@@ -106,6 +106,7 @@ const TextLoginInputField = styled(
         <TextInput
           accessible
           accessibilityLabel="textinput"
+          autoCapitalize="none"
           ref={passwordInput}
           {...rest}
         />
@@ -159,9 +160,6 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
         <Formik
           initialValues={initialLoginValues}
           onSubmit={async (values): Promise<void> => {
-            const myHeaders = new Headers();
-            myHeaders.append('Content-Type', 'application/json');
-
             const graphql = JSON.stringify({
               query: doLogin,
               variables: {
@@ -173,7 +171,9 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
             });
             const requestOptions: RequestInit = {
               body: graphql,
-              headers: myHeaders,
+              headers: {
+                'Content-Type': 'application/json'
+              },
               method: 'POST',
               redirect: 'follow'
             };
