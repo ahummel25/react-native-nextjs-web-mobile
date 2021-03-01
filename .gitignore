@@ -17,6 +17,7 @@ web-build/
 /.expo/*
 # Expo Web
 /web-build/*
+.env
 # Expo Native
 *.jks
 *.p8

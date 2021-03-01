@@ -164,11 +164,12 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
               query: doLogin,
               variables: {
                 loginUserInput: {
-                  username: values.username,
+                  username: values.username.toLowerCase(),
                   password: values.password
                 }
               }
             });
+
             const requestOptions: RequestInit = {
               body: graphql,
               headers: {
