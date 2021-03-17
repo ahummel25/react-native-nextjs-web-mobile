@@ -15,6 +15,7 @@ module.exports = {
         safe: false,
         allowUndefined: true
       }
-    ]
+    ],
+    ['@babel/plugin-proposal-class-properties']
   ]
 };
