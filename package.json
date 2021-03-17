@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "android-dev": "echo STAGE=dev > .env && expo start --android",
+    "android": "echo STAGE=dev > .env && expo start --android",
     "build": "next build",
     "build-web": "react-scripts build",
     "deploy-web-dev": "cd environment/dev && STAGE=dev serverless",
@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,md}\"",
     "lint": "eslint src/ --ext .js,.ts,.jsx,.tsx",
     "lint-fix": "eslint src/ --ext .js,.ts,.jsx,.tsx --fix",
-    "ios-dev": "echo STAGE=dev > .env && expo start --ios",
+    "ios": "echo STAGE=dev > .env && expo start --ios",
     "start": "next start",
     "start-web": "react-scripts start",
     "test": "jest --coverage --all",
