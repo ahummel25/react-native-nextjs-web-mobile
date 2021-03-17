@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@expo/next-adapter": "^2.1.41",
-    "@testing-library/jest-native": "^3.4.3",
+    "@testing-library/jest-native": "^4.0.0",
     "@testing-library/react-native": "^7.1.0",
     "@types/jest": "^26.0.15",
     "@types/react": "^17.0.0",
