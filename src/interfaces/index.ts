@@ -40,13 +40,17 @@ export interface LoadFontProps {
   fontsToLoad: {
     [fontFamily: string]: FontSource;
   };
+  // eslint-disable-next-line no-unused-vars
   setFontLoaded: (fontLoaded: boolean) => void;
 }
 
 export interface TextInputProps {
+  // eslint-disable-next-line no-unused-vars
   onChangeText?: (text: string) => void;
+  // eslint-disable-next-line no-unused-vars
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onSubmitEditing?: (
+    // eslint-disable-next-line no-unused-vars
     e: NativeSyntheticEvent<TextInputSubmitEditingEventData>
   ) => void;
   placeholder?: string;

@@ -1,10 +1,9 @@
-import React, { FC, FormEvent, useRef } from 'react';
+import React, { FC, FormEvent } from 'react';
 import {
   GestureResponderEvent,
   KeyboardAvoidingView,
   NativeSyntheticEvent,
   Platform,
-  StyleSheet,
   Text,
   TextInput,
   TextInputSubmitEditingEventData
@@ -27,27 +26,16 @@ const loginSchema = Yup.object().shape({
   password: Yup.string().required('Password is required')
 });
 
-const styles = StyleSheet.create({
-  errorInput: {
-    color: 'red',
-    fontSize: 12,
-    marginLeft: 16
-  },
-  fbLoginButton: {
+const FBLoginButton = styled(Button).attrs({
+  buttonStyle: {
+    backgroundColor: 'transparent',
     height: 45,
-    marginTop: 10,
-    backgroundColor: 'transparent'
+    marginTop: 10
   },
-  loginButton: {
-    borderRadius: 5,
-    height: 45,
-    marginTop: 10,
-    backgroundColor: colors.lightBlue
-  },
-  signUp: {
-    textAlign: 'center'
+  titleStyle: {
+    color: colors.lightBlue
   }
-});
+})``;
 
 const KeyboardAvoidingViewStyled = styled(({ ...rest }) => (
   <KeyboardAvoidingView {...rest} />
@@ -56,6 +44,14 @@ const KeyboardAvoidingViewStyled = styled(({ ...rest }) => (
   margin: auto;
   width: ${Platform.OS == 'web' ? '100%' : '75%'};
 `;
+
+const LoginButton = styled(Button).attrs({
+  buttonStyle: {
+    borderRadius: 5,
+    height: 45,
+    marginTop: 10
+  }
+})``;
 
 const LoginFormView = styled.View`
   flex: 1;
@@ -71,7 +67,11 @@ const LogoText = styled.Text`
   text-align: center;
 `;
 
-const SignUpText = styled(
+const SignUpText = styled.Text`
+  text-align: center;
+`;
+
+const SignUpTextNav = styled(
   ({ navigation, ...rest }: SignUpButtonProps): JSX.Element => {
     const router = useRouter();
     return (
@@ -93,29 +93,32 @@ const SignUpText = styled(
   color: ${colors.lightBlue};
 `;
 
+const StyledErrorText = styled.Text`
+  color: red;
+  font-size: 12px;
+  margin-left: 16px;
+`;
+
 const TextLoginInputField = styled(
   ({
     touched,
     error,
     ...rest
-  }: TextInputProps & TouchedProps & ErrorProps): JSX.Element => {
-    const passwordInput = useRef<TextInput>(null);
-
-    return (
-      <>
-        <TextInput
-          accessible
-          accessibilityLabel="textinput"
-          autoCapitalize="none"
-          ref={passwordInput}
-          {...rest}
-        />
-        {touched && error ? (
-          <Text style={styles.errorInput}>{error}</Text>
-        ) : null}
-      </>
-    );
-  }
+  }: TextInputProps & TouchedProps & ErrorProps): JSX.Element => (
+    <>
+      <TextInput
+        accessible
+        accessibilityLabel="textinput"
+        autoCapitalize="none"
+        {...rest}
+      />
+      {touched && error ? (
+        <>
+          <StyledErrorText>{error}</StyledErrorText>
+        </>
+      ) : null}
+    </>
+  )
 )`
   font-size: 14px;
   border-radius: 5px;
@@ -232,8 +235,8 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
                 touched={touched.password}
                 value={values.password}
               />
-              <Button
-                buttonStyle={[styles.loginButton]}
+              <LoginButton
+                // buttonStyle={[styles.loginButton]}
                 onPress={(event: GestureResponderEvent): void => {
                   handleSubmit(
                     (event as unknown) as FormEvent<HTMLFormElement>
@@ -244,15 +247,18 @@ const Login: FC<LoginProps> = ({ navigation }): JSX.Element => (
             </>
           )}
         </Formik>
-        <Button
-          buttonStyle={[styles.fbLoginButton]}
-          titleStyle={{ color: colors.lightBlue }}
+        <FBLoginButton
+          //   buttonStyle={[styles.fbLoginButton]}
+          //   titleStyle={{ color: colors.lightBlue }}
+          onPress={(event: GestureResponderEvent): void => {
+            console.log(event);
+          }}
           title="Login with Facebook"
         />
-        <Text style={styles.signUp}>
+        <SignUpText>
           Don&apos;t have an account?{' '}
-          <SignUpText navigation={navigation}>Sign up here</SignUpText>.
-        </Text>
+          <SignUpTextNav navigation={navigation}>Sign up here</SignUpTextNav>.
+        </SignUpText>
       </LoginFormView>
     </KeyboardAvoidingViewStyled>
   </>

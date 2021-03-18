@@ -16,6 +16,7 @@ module.exports = {
         allowUndefined: true
       }
     ],
-    ['@babel/plugin-proposal-class-properties']
+    ['@babel/plugin-proposal-class-properties'], // Comment out when running "yarn run <ios or android>", but needed for doing serverless web app deploy
+    ['@babel/plugin-transform-flow-strip-types'] // Needed for react navigation issue - https://github.com/react-navigation/react-navigation/issues/6058
   ]
 };
