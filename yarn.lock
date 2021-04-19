@@ -6851,10 +6851,10 @@ electron-to-chromium@^1.3.564, electron-to-chromium@^1.3.634, electron-to-chromi
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.691.tgz#a671eaf135a3ccec0915eb8d844a0952aba79f3b"
   integrity sha512-ZqiO69KImmOGCyoH0icQPU3SndJiW93juEvf63gQngyhODO6SpQIPMTOHldtCs5DS5GMKvAkquk230E2zt2vpw==
 
-electron@^9.1.0:
-  version "9.4.4"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-9.4.4.tgz#2a74a0655a74bd326216672c5ae6ed3a44451446"
-  integrity sha512-dcPlTrMWQu5xuSm6sYV42KK/BRIqh3erM8v/WtZqaDmG7pkCeJpvw26Dgbqhdt78XmqqGiN96giEe6A3S9vpAQ==
+electron@^11.1.0:
+  version "11.4.3"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-11.4.3.tgz#74319635417c24fd19e31cfce5a39c8792e4014b"
+  integrity sha512-RhCWJqiYK5oIRGOheilhg/nngCgk0fPgaf00KvbxorlvFZAz8OeMT5ShCpVsMSoyYhk4XEnn4orRly5ltaFYJg==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
@@ -14370,7 +14370,15 @@ react-dev-utils@^11.0.3, react-dev-utils@~11.0.1:
     strip-ansi "6.0.0"
     text-table "0.2.0"
 
-react-devtools-core@4.10.1, react-devtools-core@^4.6.0:
+react-devtools-core@4.12.2:
+  version "4.12.2"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.12.2.tgz#4198f42fec867ed82dd0ee0f059b450e703b2b1e"
+  integrity sha512-cvAiJCSIIan2A22o4j4Twc7PdDrwqiAQVBeZ+osS2T/wv2Ua3a0J8Sgx4pTH5Y7VoWn5WiGCHkAW4S1lYl3kcA==
+  dependencies:
+    shell-quote "^1.6.1"
+    ws "^7"
+
+react-devtools-core@^4.6.0:
   version "4.10.1"
   resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.10.1.tgz#6d57db291aeac9cc45ef9fb4636dd2ab97490daf"
   integrity sha512-sXbBjGAWcf9HAblTP/zMtFhGHqxAfIR+GPxONZsSGN9FHnF4635dx1s2LdQWG9rJ+Ehr3nWg+BUAB6P78my5PA==
@@ -14378,16 +14386,16 @@ react-devtools-core@4.10.1, react-devtools-core@^4.6.0:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.9.0:
-  version "4.10.1"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.10.1.tgz#579c14fe0b181e222e262a75fc55c2e2e17abc7a"
-  integrity sha512-gGOu0tcpCdm2+LZNrFgyimImtkYDoi6z5aKMRxxfuRM0VrJpmZakxAwaLs0BMRA9+UUF22Emzku366+m5eBtIQ==
+react-devtools@^4.10.1:
+  version "4.12.2"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.12.2.tgz#fe5f37e940f90531966eae48a3f502c6a6dbcba9"
+  integrity sha512-sprNdafeCyeRvPlTVSBP6BPVIHklwqQijqa8s/KUfHvWP1pnQDHeGXWg1OoI9/FB4OVE51X8LFSdeP8tr+OvWg==
   dependencies:
     cross-spawn "^5.0.1"
-    electron "^9.1.0"
+    electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.10.1"
+    react-devtools-core "4.12.2"
     update-notifier "^2.1.0"
 
 react-dom@^16.0.0:

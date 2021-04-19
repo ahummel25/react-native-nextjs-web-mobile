@@ -76,7 +76,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "fetch-mock-jest": "^1.5.1",
     "jest": "^26.6.3",
-    "react-devtools": "^4.9.0",
+    "react-devtools": "^4.10.1",
     "react-native-dotenv": "^2.5.3",
     "react-native-mock-render": "^0.1.9",
     "react-test-renderer": "^17.0.1",
