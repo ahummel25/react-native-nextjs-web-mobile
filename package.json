@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.1.0",
-    "@react-native-community/masked-view": "0.1.10",
+    "@react-native-community/masked-view": "0.1.11",
     "@react-navigation/native": "^5.8.9",
     "@react-navigation/stack": "^5.12.6",
     "expo": "^40.0.1",
